@@ -27,6 +27,42 @@
             return _fraction;
         }
 
+        public static NumeroMixto operator +(NumeroMixto a, NumeroMixto b)
+        {
+            var f1 = a.ConvertToFraccion();
+            var f2 = b.ConvertToFraccion();
+            var f3 = f1 + f2;
+            f3 = f3.Simplify();
+            return f3.ConvertToMixedFraccion();
+        }
+
+        public static NumeroMixto operator -(NumeroMixto a, NumeroMixto b)
+        {
+            var f1 = a.ConvertToFraccion();
+            var f2 = b.ConvertToFraccion();
+            var f3 = f1 - f2;
+            f3 = f3.Simplify();
+            return f3.ConvertToMixedFraccion();
+        }
+
+        public static NumeroMixto operator *(NumeroMixto a, NumeroMixto b)
+        {
+            var f1 = a.ConvertToFraccion();
+            var f2 = b.ConvertToFraccion();
+            var f3 = f1 * f2;
+            f3 = f3.Simplify();
+            return f3.ConvertToMixedFraccion();
+        }
+
+        public static NumeroMixto operator /(NumeroMixto a, NumeroMixto b)
+        {
+            var f1 = a.ConvertToFraccion();
+            var f2 = b.ConvertToFraccion();
+            var f3 = f1 / f2;
+            f3 = f3.Simplify();
+            return f3.ConvertToMixedFraccion();
+        }
+
         public Fraccion ConvertToFraccion()
         {
             var d = Fraction().Denominator();
