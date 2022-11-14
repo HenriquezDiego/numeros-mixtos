@@ -29,40 +29,38 @@
 
         public static NumeroMixto operator +(NumeroMixto a, NumeroMixto b)
         {
-            var f1 = a.ConvertToFraccion();
-            var f2 = b.ConvertToFraccion();
-            var f3 = f1 + f2;
-            f3 = f3.Simplify();
-            return f3.ConvertToMixedFraccion();
+            return Operacion(a,b,'+');
         }
 
         public static NumeroMixto operator -(NumeroMixto a, NumeroMixto b)
         {
-            var f1 = a.ConvertToFraccion();
-            var f2 = b.ConvertToFraccion();
-            var f3 = f1 - f2;
-            f3 = f3.Simplify();
-            return f3.ConvertToMixedFraccion();
+            return Operacion(a,b,'-');
         }
 
         public static NumeroMixto operator *(NumeroMixto a, NumeroMixto b)
         {
-            var f1 = a.ConvertToFraccion();
-            var f2 = b.ConvertToFraccion();
-            var f3 = f1 * f2;
-            f3 = f3.Simplify();
-            return f3.ConvertToMixedFraccion();
+            return Operacion(a,b,'*');
         }
 
         public static NumeroMixto operator /(NumeroMixto a, NumeroMixto b)
         {
-            var f1 = a.ConvertToFraccion();
-            var f2 = b.ConvertToFraccion();
-            var f3 = f1 / f2;
-            f3 = f3.Simplify();
-            return f3.ConvertToMixedFraccion();
+            return Operacion(a,b,'/');
         }
 
+        private static NumeroMixto Operacion(NumeroMixto a, NumeroMixto b,char op)
+        {
+            var f1 = a.ConvertToFraccion();
+            var f2 = b.ConvertToFraccion();
+            var f3 = op switch
+            {
+                '+' => f1 + f2,
+                '-' => f1 - f2,
+                '*' => f1 * f2,
+                '/' => f1 / f2,
+                _ => throw new ArgumentOutOfRangeException(nameof(op), op, null)
+            };
+            return f3.Simplify().ConvertToMixedFraccion();
+        }
         public Fraccion ConvertToFraccion()
         {
             var d = Fraction().Denominator();

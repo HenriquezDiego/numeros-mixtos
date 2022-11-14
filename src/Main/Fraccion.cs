@@ -25,7 +25,7 @@
             return _denominador;
         }
 
-        public bool IsProper()
+        public bool EsPropia()
         {
             return _numerador < _denominador;
         }
